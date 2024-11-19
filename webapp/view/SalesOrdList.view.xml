@@ -1,0 +1,56 @@
+<mvc:View controllerName="ust.sd.salesord.salesord.controller.SalesOrdList"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem name="Sales Order" label="Sales Order" groupName="Group1" visibleInFilterBar="true">
+						<fb:control>
+                            <Input id="idSalesOrderInput" showValueHelp="true" valueHelpRequest="onSalesOrderF4"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+            <Table id="idSalesOrdTable" items="{salesOrd>/results}" mode="SingleSelectLeft">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <ToolbarSpacer />
+                            <Button text="Create" icon="sap-icon://create" type="Accept" press="onCreatePressed"/>
+                            <Button text="Edit" icon="sap-icon://edit" type="Accept" press="onUpdatePressed"/>
+                        </content>
+                    </OverflowToolbar>
+		        </headerToolbar>
+		        <columns>
+                    <Column width="12em">
+                        <Text text="Sales Order" />
+                    </Column>
+                    <Column width="12em">
+                        <Text text="Sales Order Type" />
+                    </Column>
+                    <Column width="12em">
+                        <Text text="Overall Delivery Status" />
+                    </Column>
+                    <Column width="12em">
+                        <Text text="Purchase Order By Customer" />
+                    </Column>
+                    <Column width="12em">
+                        <Text text="Sales District" />
+                    </Column>
+		        </columns>
+		        <items>
+			        <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{salesOrd>SalesOrder}" />
+                            <Text text="{salesOrd>SalesOrderType}" />
+                            <Text text="{salesOrd>OverallDeliveryStatus}" />
+                            <Text text="{salesOrd>PurchaseOrderByCustomer}"/>
+                            <Text text="{salesOrd>SalesDistrict}"/>
+                        </cells>
+			        </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
